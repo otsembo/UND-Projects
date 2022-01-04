@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_navigation"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.udacity.shoestore.presentation.auth.Login"
+        android:label="Login"
+        tools:layout="@layout/auth_login">
+        <action
+            android:id="@+id/action_login_to_welcome"
+            app:destination="@id/welcome"
+            app:popUpTo="@id/store_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcome"
+        android:name="com.udacity.shoestore.presentation.onboarding.welcome.Welcome"
+        android:label="Welcome"
+        tools:layout="@layout/onboarding_welcome">
+        <action
+            android:id="@+id/action_welcome_to_instruction"
+            app:destination="@id/instruction"
+            app:popUpTo="@id/store_navigation"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/instruction"
+        android:name="com.udacity.shoestore.presentation.onboarding.instructions.Instruction"
+        android:label="Instruction"
+        tools:layout="@layout/onboarding_instruction">
+        <action
+            android:id="@+id/action_instruction_to_shoeList"
+            app:destination="@id/shoeList" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeList"
+        android:name="com.udacity.shoestore.presentation.shoe.shoelist.ShoeList"
+        android:label="ShoeList"
+        tools:layout="@layout/shoe_list">
+        <action
+            android:id="@+id/action_shoeList_to_shoeDetail"
+            app:destination="@id/shoeDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeDetail"
+        android:name="com.udacity.shoestore.presentation.shoe.shoedetail.ShoeDetail"
+        android:label="ShoeDetail"
+        tools:layout="@layout/shoe_detail"/>
+</navigation>

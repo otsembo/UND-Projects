@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ShoeStore</string>
+    <string name="app_logo">App Logo</string>
+    <string name="login">Login</string>
+    <string name="email">EMAIL ADDRESS</string>
+    <string name="pass">PASSWORD</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="app_banner">app banner</string>
+    <string name="welcome_to_shoepify">Welcome to Shoepify</string>
+    <string name="intro_text">Hey, nice to see you here. Welcome\' enjoy a wide variety of shoes you can buy</string>
+    <string name="let_s_go">LET\'S GO</string>
+    <string name="find_a_shoe_you_like">Find a shoe you like</string>
+    <string name="instruction_text">There is a variety of items you can find in our store. Find what you like. Do not forget to give us your feedback before you go</string>
+    <string name="let_s_do_some_shopping">LET\'S DO SOME SHOPPING</string>
+</resources>

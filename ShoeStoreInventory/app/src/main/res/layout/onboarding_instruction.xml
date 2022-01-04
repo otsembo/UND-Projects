@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
+            android:padding="5dp"
+            android:id="@+id/txtInstructionTitle"
+            android:text="@string/find_a_shoe_you_like"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:layout_height="350dp"
+            app:srcCompat="@drawable/banner_find"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerInside"
+            android:id="@+id/bannerInstructions"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:id="@+id/txtInstructionMessage"
+            android:text="@string/instruction_text"
+            android:gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/let_s_do_some_shopping"
+            android:id="@+id/btnShoppingGo"/>
+
+    </LinearLayout>
+
+</layout>
