@@ -34,7 +34,9 @@
         tools:layout="@layout/onboarding_instruction">
         <action
             android:id="@+id/action_instruction_to_shoeList"
-            app:destination="@id/shoeList" />
+            app:destination="@id/shoeList"
+            app:popUpTo="@id/store_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/shoeList"
@@ -44,10 +46,24 @@
         <action
             android:id="@+id/action_shoeList_to_shoeDetail"
             app:destination="@id/shoeDetail" />
+        <action
+            android:id="@+id/action_shoeList_to_login"
+            app:destination="@id/login"
+            app:popUpTo="@id/store_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetail"
         android:name="com.udacity.shoestore.presentation.shoe.shoedetail.ShoeDetail"
         android:label="ShoeDetail"
-        tools:layout="@layout/shoe_detail"/>
+        tools:layout="@layout/shoe_detail">
+        <action
+            android:id="@+id/action_shoeDetail_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_shoeDetail_to_shoeList"
+            app:destination="@id/shoeList"
+            app:popUpTo="@id/shoeList"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

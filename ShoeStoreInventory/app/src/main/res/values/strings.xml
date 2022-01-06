@@ -13,4 +13,14 @@
     <string name="find_a_shoe_you_like">Find a shoe you like</string>
     <string name="instruction_text">There is a variety of items you can find in our store. Find what you like. Do not forget to give us your feedback before you go</string>
     <string name="let_s_do_some_shopping">LET\'S DO SOME SHOPPING</string>
+    <string name="add_shoe">Add Shoe</string>
+    <string name="shoe_list_text">Hey there, your shoes will appear here. Add a shoe by clicking the button at the bottom</string>
+    <string name="logout">LOGOUT</string>
+    <string name="detail_txt">Add a new shoe to your list.</string>
+    <string name="shoe_name">NAME</string>
+    <string name="company">COMPANY</string>
+    <string name="size">SIZE</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="save_shoe">SAVE SHOE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

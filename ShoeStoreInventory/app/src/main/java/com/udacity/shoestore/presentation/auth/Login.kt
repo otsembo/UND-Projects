@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.udacity.shoestore.AppViewModel
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.AuthLoginBinding
 
 class Login : Fragment() {
 
     private lateinit var binding:AuthLoginBinding
+    private val viewModel:AppViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AuthLoginBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.auth_login, container, false)
         return binding.root
     }
 
