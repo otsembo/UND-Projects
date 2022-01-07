@@ -50,7 +50,7 @@ To install the application you will need to do the following:
 
         Build > Run 'app'
 
-NB: There is an alternative README_.md file that contains the instructions for this project.
+NB: There is an alternative ```README_.md``` file that contains the requirements for this project.
 
 # Usage
 
@@ -60,5 +60,5 @@ Check out some snaps of the application
 
  Login | Welcome | Instruction | ShoeList | ShoeDetail |
  ----- | ------- | ----------- | -------- | ---------- |
- <img src="images/login.jpg" width="150"> | <img src="images/welcome.jpg" width="150"> | <img src="images/instruction.jpg" width="150"> | <img src="images/shoelist.jpg" width="150"> | <img src="images/shoedetail.jpg" width="150"> |
+ <img src="images/login.jpg" width="150"> | <img src="images/welcome.jpg" width="150"> | <img src="images/instruction_.jpg" width="150"> | <img src="images/shoelist.jpg" width="150"> | <img src="images/shoedetail.jpg" width="150"> |
 

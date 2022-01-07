@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.view.setMargins
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -85,7 +86,7 @@ class ShoeList : Fragment() {
         layout.addView(createTextView(company))
         layout.addView(createTextView(size.toString()))
         layout.addView(createTextView(desc))
-        setUpMargins(layout, 5)
+        setUpMargins(layout, 40)
 
         cardView.addView(layout)
         return cardView

@@ -23,8 +23,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:padding="15dp"
-            android:layout_height="350dp"
-            app:srcCompat="@drawable/banner_find"
+            android:layout_height="200dp"
+            app:srcCompat="@drawable/ic_banner"
             android:layout_marginTop="8dp"
             android:scaleType="centerInside"
             android:id="@+id/bannerInstructions"/>
