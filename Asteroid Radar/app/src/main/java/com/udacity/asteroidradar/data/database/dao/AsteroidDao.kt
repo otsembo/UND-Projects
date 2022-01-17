@@ -20,6 +20,6 @@ interface AsteroidDao {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM asteroids WHERE id = :id LIMIT 1")
-    suspend fun getAsteroid(id:Long) : LiveData<Asteroid>
+    suspend fun getAsteroid(id:Long) : Asteroid
 
 }

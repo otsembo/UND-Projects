@@ -11,6 +11,7 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object FetchFromServer {
 
@@ -22,6 +23,7 @@ object FetchFromServer {
 
         private val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
@@ -31,8 +33,8 @@ object FetchFromServer {
     }
 
 
-    class FetchAsteroids () {
-        suspend operator fun invoke(startDate:String, endDate:String) : JSONObject {
+    class FetchAsteroids {
+        suspend operator fun invoke(startDate:String, endDate:String) : String {
             return NetworkService.API.fetchAsteroids(
                 startDate = startDate,
                 endDate = endDate,
@@ -42,7 +44,7 @@ object FetchFromServer {
     }
 
 
-    class FetchImageOfDay () {
+    class FetchImageOfDay {
         suspend operator fun invoke() : PictureOfDay {
             return NetworkService.API.fetchImageOfDay(
                 apiKey = ApiKeys.NASA_API

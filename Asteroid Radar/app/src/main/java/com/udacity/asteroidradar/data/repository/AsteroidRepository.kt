@@ -13,18 +13,18 @@ import com.udacity.asteroidradar.domain.SaveToDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import retrofit2.HttpException
 
 class AsteroidRepository
     constructor(private val db:AsteroidDatabase){
 
     private val ioScope = CoroutineScope(Dispatchers.IO)
-
     private val defaultScope = CoroutineScope(Dispatchers.Default)
 
     // data for ui
-    val asteroids : LiveData<List<Asteroid>> = FetchFromDB.GetAsteroids(db.asteroidDao).invoke()
-    val picOfDay  : LiveData<PictureOfDay> = FetchFromDB.GetPicOfDay(db.pictureDao).invoke()
+    val asteroids : LiveData<List<Asteroid>> = FetchFromDB.GetAsteroids(db.asteroidDao)()
+    val picOfDay  : LiveData<PictureOfDay> = FetchFromDB.GetPicOfDay(db.pictureDao)()
 
     //single asteroid
     private val _singleAsteroid = MutableLiveData<Asteroid>()
@@ -32,31 +32,35 @@ class AsteroidRepository
         get() = _singleAsteroid
 
 
-    private suspend fun savePicOfDay(pictureOfDay: PictureOfDay){
+    private fun savePicOfDay(pictureOfDay: PictureOfDay){
 
         ioScope.launch {
-            SaveToDB.AddPicOfDay(db.pictureDao).invoke(pictureOfDay)
+            SaveToDB.AddPicOfDay(db.pictureDao)(pictureOfDay)
         }
 
     }
 
 
-    private suspend fun saveAsteroids(asteroids: ArrayList<Asteroid>){
+    private fun saveAsteroids(asteroids: ArrayList<Asteroid>){
 
         ioScope.launch {
-            SaveToDB.AddAsteroid(db.asteroidDao).invoke(asteroids)
+            SaveToDB.AddAsteroid(db.asteroidDao)(asteroids)
         }
 
     }
 
-    suspend fun fetchAsteroids (startDate: String, endDate: String){
+    fun fetchAsteroids (startDate: String, endDate: String){
 
         defaultScope.launch {
             try {
                 // get data from servers
-                val data = FetchFromServer.FetchAsteroids().invoke(startDate, endDate)
+                val data = FetchFromServer.FetchAsteroids()(startDate, endDate)
+
+                //convert to JSON Object
+                val serverObject = JSONObject(data)
+
                 //add to db
-                saveAsteroids(parseAsteroidsJsonResult(data))
+                saveAsteroids(parseAsteroidsJsonResult(serverObject))
 
             }catch (e: HttpException){
                 //TODO: Add exception handling for fetching asteroids
@@ -66,12 +70,12 @@ class AsteroidRepository
     }
 
 
-    suspend fun fetchPicOfDay() {
+    fun fetchPicOfDay() {
 
         defaultScope.launch {
             try {
                 //get image from server
-                val image = FetchFromServer.FetchImageOfDay().invoke()
+                val image = FetchFromServer.FetchImageOfDay()()
                 //add to db
                 savePicOfDay(image)
             }catch (e: HttpException){
@@ -81,9 +85,9 @@ class AsteroidRepository
 
     }
 
-    suspend fun getAsteroid (id:Long) {
+    fun getAsteroid (id:Long) {
         ioScope.launch {
-            _singleAsteroid.value = FetchFromDB.GetSingleAsteroid(db.asteroidDao).invoke(id).value
+            _singleAsteroid.value = FetchFromDB.GetSingleAsteroid(db.asteroidDao)(id)!!
         }
     }
 

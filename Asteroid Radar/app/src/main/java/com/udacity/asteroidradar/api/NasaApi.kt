@@ -16,7 +16,7 @@ interface NasaApi {
         endDate:String,
 
         @Query("api_key")
-        apiKey:String) : JSONObject
+        apiKey:String) : String
 
     @GET("planetary/apod")
     suspend fun fetchImageOfDay(

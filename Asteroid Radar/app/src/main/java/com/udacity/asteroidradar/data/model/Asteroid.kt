@@ -6,8 +6,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "asteroids")
 @Parcelize
+@Entity(tableName = "asteroids")
 data class Asteroid(
     @PrimaryKey
     val id: Long,
