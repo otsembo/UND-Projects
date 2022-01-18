@@ -64,6 +64,8 @@ class AsteroidRepository
 
             }catch (e: HttpException){
                 //TODO: Add exception handling for fetching asteroids
+            }catch (e: Exception){
+
             }
         }
 
@@ -80,6 +82,8 @@ class AsteroidRepository
                 savePicOfDay(image)
             }catch (e: HttpException){
                 //TODO: Add exception handling for fetching pic of day
+            }catch (e: Exception){
+
             }
         }
 

@@ -1,11 +1,9 @@
 package com.udacity.asteroidradar.presentation.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.udacity.asteroidradar.data.database.AsteroidDatabase.Companion.getDbInstance
+import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.repository.AsteroidRepository
 import kotlinx.coroutines.launch
 
@@ -21,12 +19,28 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     val asteroids = repo.asteroids
 
 
+    //navigate to details
+    private val _navigateToAsteroidDetails = MutableLiveData<Asteroid?>()
+    val navigateToAsteroidDetails : LiveData<Asteroid?>
+        get() = _navigateToAsteroidDetails
+
+
     init {
         repo.fetchAsteroids("","")
         repo.fetchPicOfDay()
     }
 
+    fun onAsteroidClicked(asteroid: Asteroid){
+        _navigateToAsteroidDetails.value = asteroid
+    }
 
+    fun finishedNavigation(){
+        _navigateToAsteroidDetails.value = null
+    }
+
+    fun filterAsteroids(start: String, end:String){
+        
+    }
 
     class Factory(private val application: Application) : ViewModelProvider.Factory{
 

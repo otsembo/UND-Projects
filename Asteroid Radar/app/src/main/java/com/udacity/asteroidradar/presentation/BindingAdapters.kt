@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.presentation
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
@@ -47,6 +48,6 @@ fun bindImageUrl(imageView: ImageView, url:String?){
     val mCtx = imageView.context
     Picasso.with(mCtx)
         .load(url)
-        .placeholder(mCtx.getDrawable(R.drawable.placeholder_picture_of_day))
+        .placeholder(AppCompatResources.getDrawable(mCtx,R.drawable.placeholder_picture_of_day))
         .into(imageView)
 }
