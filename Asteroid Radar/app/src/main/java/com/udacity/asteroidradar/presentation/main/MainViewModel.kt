@@ -2,6 +2,8 @@ package com.udacity.asteroidradar.presentation.main
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.udacity.asteroidradar.common.AppUtils.DEFAULT_END_DATE
+import com.udacity.asteroidradar.common.AppUtils.getTodaysDate
 import com.udacity.asteroidradar.data.database.AsteroidDatabase.Companion.getDbInstance
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.repository.AsteroidRepository
@@ -24,9 +26,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     val navigateToAsteroidDetails : LiveData<Asteroid?>
         get() = _navigateToAsteroidDetails
 
+    //loading details
+    private val _isDataLoading = MutableLiveData<Boolean?>()
+    val isDataLoading : LiveData<Boolean?>
+        get() = _isDataLoading
+
 
     init {
-        repo.fetchAsteroids("","")
+        repo.fetchAsteroids(
+            getTodaysDate(),
+            DEFAULT_END_DATE
+        )
+
         repo.fetchPicOfDay()
     }
 
@@ -39,7 +50,15 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     fun filterAsteroids(start: String, end:String){
-        
+
+    }
+
+    fun finishedLoading(){
+        _isDataLoading.value = false
+    }
+
+    fun startLoading(){
+        _isDataLoading.value = true
     }
 
     class Factory(private val application: Application) : ViewModelProvider.Factory{

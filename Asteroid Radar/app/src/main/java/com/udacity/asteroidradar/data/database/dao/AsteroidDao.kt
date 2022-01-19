@@ -10,7 +10,7 @@ import com.udacity.asteroidradar.data.model.Asteroid
 @Dao
 interface AsteroidDao {
 
-    @Query("SELECT * FROM asteroids")
+    @Query("SELECT * FROM asteroids ORDER BY approach_date ASC")
     fun getAllAsteroids() : LiveData<List<Asteroid>>
 
     @Insert(onConflict = REPLACE)
@@ -21,5 +21,8 @@ interface AsteroidDao {
 
     @Query("SELECT * FROM asteroids WHERE id = :id LIMIT 1")
     suspend fun getAsteroid(id:Long) : Asteroid
+
+    @Query("SELECT * FROM asteroids WHERE approach_date = :approachDate")
+    fun getTodayAsteroids(approachDate:String) : LiveData<List<Asteroid>>
 
 }

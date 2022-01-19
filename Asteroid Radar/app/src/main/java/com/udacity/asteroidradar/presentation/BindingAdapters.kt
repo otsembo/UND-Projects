@@ -1,6 +1,8 @@
 package com.udacity.asteroidradar.presentation
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.BindingAdapter
@@ -50,4 +52,13 @@ fun bindImageUrl(imageView: ImageView, url:String?){
         .load(url)
         .placeholder(AppCompatResources.getDrawable(mCtx,R.drawable.placeholder_picture_of_day))
         .into(imageView)
+}
+
+@BindingAdapter("loadingStatus")
+fun bindLoadingStatus(progressBar: ProgressBar, isLoading:Boolean?){
+    progressBar.visibility = when(isLoading){
+        true ->  View.VISIBLE
+        false -> View.GONE
+        else ->  View.GONE
+    }
 }

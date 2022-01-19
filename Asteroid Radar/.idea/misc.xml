@@ -5,6 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_status_normal.xml" value="0.3896037056098816" />
         <entry key="app/src/main/res/drawable/ic_status_potentially_hazardous.xml" value="0.3896037056098816" />
+        <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.285546875" />
+        <entry key="app/src/main/res/layout-sw600dp/asteroid_row.xml" value="0.285546875" />
+        <entry key="app/src/main/res/layout-sw600dp/fragment_detail.xml" value="0.285546875" />
+        <entry key="app/src/main/res/layout-sw600dp/fragment_main.xml" value="0.5097087378640777" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3807291666666667" />
         <entry key="app/src/main/res/layout/asteroid_row.xml" value="0.3807291666666667" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.3807291666666667" />

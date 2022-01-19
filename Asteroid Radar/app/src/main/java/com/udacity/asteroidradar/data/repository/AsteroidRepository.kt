@@ -49,6 +49,14 @@ class AsteroidRepository
 
     }
 
+    fun deleteExistingAsteroids(){
+
+        defaultScope.launch {
+           db.asteroidDao.deleteAll()
+        }
+
+    }
+
     fun fetchAsteroids (startDate: String, endDate: String){
 
         defaultScope.launch {

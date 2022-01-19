@@ -37,6 +37,7 @@ class MainFragment : Fragment() {
     private fun initObservers(){
 
         viewModel.asteroids.observe(viewLifecycleOwner, {
+            viewModel.finishedLoading()
             adapter.setListItems(it)
         })
 

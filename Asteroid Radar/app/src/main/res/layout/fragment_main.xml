@@ -28,6 +28,7 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="@{viewModel.heroImage.title}"
                 app:imageUrl="@{viewModel.heroImage.url}"
                 app:srcCompat="@drawable/placeholder_picture_of_day"/>
 
@@ -40,6 +41,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_gravity="bottom"
+                android:contentDescription="@string/asteroid_image_description"
                 android:background="#55010613"
                 android:text="@{viewModel.heroImage.title}" />
         </FrameLayout>
@@ -62,6 +64,8 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="gone"
+            app:loadingStatus="@{viewModel.isDataLoading()}"
+            android:contentDescription="@string/asteroid_loader"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
