@@ -13,6 +13,7 @@ import com.udacity.asteroidradar.data.model.PictureOfDay
 import com.udacity.asteroidradar.work.RefreshAsteroids
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -27,8 +28,20 @@ object FetchFromServer {
             .add(KotlinJsonAdapterFactory())
             .build()
 
+        private val client = OkHttpClient.Builder()
+            .addInterceptor { interceptorChain ->
+                val url = interceptorChain
+                    .request()
+                    .url()
+                    .newBuilder()
+                    .addQueryParameter("api_key", ApiKeys.NASA_API)
+                    .build()
+                interceptorChain.proceed(interceptorChain.request().newBuilder().url(url).build())
+            }.build()
+
         private val retrofit = Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+            .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -43,8 +56,7 @@ object FetchFromServer {
         suspend operator fun invoke(startDate:String, endDate:String) : String {
             return NetworkService.API.fetchAsteroids(
                 startDate = startDate,
-                endDate = endDate,
-                apiKey = ApiKeys.NASA_API
+                endDate = endDate
             )
         }
     }
@@ -52,9 +64,7 @@ object FetchFromServer {
 
     class FetchImageOfDay {
         suspend operator fun invoke() : PictureOfDay {
-            return NetworkService.API.fetchImageOfDay(
-                apiKey = ApiKeys.NASA_API
-            ).getPictureOfDay()
+            return NetworkService.API.fetchImageOfDay().getPictureOfDay()
         }
     }
 

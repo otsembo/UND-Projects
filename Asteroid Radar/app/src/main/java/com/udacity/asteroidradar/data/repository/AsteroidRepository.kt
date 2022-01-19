@@ -1,9 +1,9 @@
 package com.udacity.asteroidradar.data.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.common.AppUtils.getYesterdaysDate
 import com.udacity.asteroidradar.data.database.AsteroidDatabase
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.model.PictureOfDay
@@ -13,6 +13,7 @@ import com.udacity.asteroidradar.domain.SaveToDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import retrofit2.HttpException
 
@@ -25,6 +26,11 @@ class AsteroidRepository
     // data for ui
     val asteroids : LiveData<List<Asteroid>> = FetchFromDB.GetAsteroids(db.asteroidDao)()
     val picOfDay  : LiveData<PictureOfDay> = FetchFromDB.GetPicOfDay(db.pictureDao)()
+
+    private val _filteredAsteroids = MutableLiveData<List<Asteroid>>()
+    val filteredAsteroids : LiveData<List<Asteroid>>
+        get() = _filteredAsteroids
+
 
     //single asteroid
     private val _singleAsteroid = MutableLiveData<Asteroid>()
@@ -49,10 +55,27 @@ class AsteroidRepository
 
     }
 
+    fun filterAsteroids(startDate:String, endDate:String){
+
+        ioScope.launch {
+            val filterAsteroids = FetchFromDB.GetFiltered(db.asteroidDao)(startDate, endDate)
+            withContext(Dispatchers.Main){
+                _filteredAsteroids.value = filterAsteroids
+            }
+        }
+    }
+
+    fun showAllAsteroids(){
+        _filteredAsteroids.value = asteroids.value
+    }
+
+
     fun deleteExistingAsteroids(){
 
         defaultScope.launch {
-           db.asteroidDao.deleteAll()
+           db.asteroidDao.deletePreviousDayData(
+               getYesterdaysDate()
+           )
         }
 
     }

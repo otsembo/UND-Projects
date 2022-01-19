@@ -29,4 +29,5 @@
     <string name="asteroid_image_detail">imagen de un asteroide</string>
     <string name="asteroid_au">Haga clic para aprender sobre la unidad astronómica</string>
 
+    <string name="filter_message">Tu filtro ha sido aplicado</string>
 </resources>

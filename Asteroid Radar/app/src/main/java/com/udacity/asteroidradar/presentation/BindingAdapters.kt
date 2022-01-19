@@ -8,6 +8,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.data.model.Asteroid
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -62,3 +63,24 @@ fun bindLoadingStatus(progressBar: ProgressBar, isLoading:Boolean?){
         else ->  View.GONE
     }
 }
+
+@BindingAdapter("potentialHazard")
+fun bindHazardPotential(imageView: ImageView, isPotentiallyHazardous:Boolean){
+    val mCtx = imageView.context
+    imageView.contentDescription = when(isPotentiallyHazardous){
+        true -> {mCtx.getString(R.string.potentially_hazardous_asteroid_image)}
+        false -> {mCtx.getString(R.string.not_hazardous_asteroid_image)}
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -17,4 +17,8 @@ object FetchFromDB {
        suspend operator fun invoke(id:Long) = dao.getAsteroid(id)
     }
 
+    class GetFiltered(private val dao: AsteroidDao) {
+         suspend operator fun invoke(startDate:String, endDate:String) = dao.getFilteredAsteroids(startDate, endDate)
+    }
+
 }

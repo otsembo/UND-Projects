@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.common.AppUtils.DEFAULT_END_DATE
 import com.udacity.asteroidradar.common.AppUtils.getTodaysDate
+import com.udacity.asteroidradar.common.AppUtils.getWeeksEnd
 import com.udacity.asteroidradar.data.database.AsteroidDatabase.Companion.getDbInstance
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.data.repository.AsteroidRepository
@@ -19,6 +20,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     val heroImage = repo.picOfDay
     val asteroids = repo.asteroids
+    val filteredAsteroids = repo.filteredAsteroids
 
 
     //navigate to details
@@ -35,7 +37,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     init {
         repo.fetchAsteroids(
             getTodaysDate(),
-            DEFAULT_END_DATE
+            getWeeksEnd()
         )
 
         repo.fetchPicOfDay()
@@ -51,6 +53,12 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     fun filterAsteroids(start: String, end:String){
 
+        repo.filterAsteroids(startDate = start, endDate = end)
+
+    }
+
+    fun resetList(){
+        repo.showAllAsteroids()
     }
 
     fun finishedLoading(){

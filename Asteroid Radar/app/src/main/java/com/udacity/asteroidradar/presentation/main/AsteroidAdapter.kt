@@ -9,31 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.data.model.Asteroid
 import com.udacity.asteroidradar.databinding.AsteroidRowBinding
 
-class AsteroidAdapter(val clickListener : AsteroidListener) :
-        ListAdapter<Asteroid, AsteroidAdapter.AsteroidViewHolder>(AsteroidAdapterDiffCallback()){
-
-     class AsteroidViewHolder private constructor(private val binding: AsteroidRowBinding) : RecyclerView.ViewHolder(binding.root){
-
-         fun bindData(asteroid: Asteroid, listener:AsteroidListener){
-             binding.asteroid = asteroid
-             binding.clickListener = listener
-             binding.executePendingBindings()
-         }
-
-
-         companion object{
-             fun createFrom(container:ViewGroup) : AsteroidViewHolder{
-                 val binding = AsteroidRowBinding.inflate(
-                     LayoutInflater.from(container.context),
-                     container,
-                     false
-                 )
-
-                 return AsteroidViewHolder(binding)
-             }
-         }
-
-     }
+class AsteroidAdapter(private val clickListener : AsteroidListener) :
+        ListAdapter<Asteroid, AsteroidViewHolder>(AsteroidAdapterDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
         return AsteroidViewHolder.createFrom(parent)
@@ -46,6 +23,25 @@ class AsteroidAdapter(val clickListener : AsteroidListener) :
 
     fun setListItems(list: List<Asteroid>){
         submitList(list)
+    }
+
+}
+
+//view holder
+class AsteroidViewHolder
+    private constructor(private val binding: AsteroidRowBinding) : RecyclerView.ViewHolder(binding.root){
+
+    fun bindData(asteroid: Asteroid, listener:AsteroidListener){
+        binding.asteroid = asteroid
+        binding.clickListener = listener
+        binding.executePendingBindings()
+    }
+
+    companion object{
+        fun createFrom(container:ViewGroup) : AsteroidViewHolder{
+            val binding = AsteroidRowBinding.inflate( LayoutInflater.from(container.context), container, false)
+            return AsteroidViewHolder(binding)
+        }
     }
 
 }

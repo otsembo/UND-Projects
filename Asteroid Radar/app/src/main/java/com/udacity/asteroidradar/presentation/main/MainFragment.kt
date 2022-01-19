@@ -6,7 +6,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.udacity.asteroidradar.R
+import com.udacity.asteroidradar.common.AppUtils
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -54,6 +56,11 @@ class MainFragment : Fragment() {
             }
         })
 
+        viewModel.filteredAsteroids.observe(viewLifecycleOwner, {
+            adapter.setListItems(it)
+            showFilterMessage()
+        })
+
     }
 
     private fun setUpList(){
@@ -62,6 +69,14 @@ class MainFragment : Fragment() {
         })
         binding.asteroidRecycler.adapter = adapter
 
+    }
+
+
+    private fun showFilterMessage(){
+        Snackbar.make(binding.root,
+            requireContext().getString(R.string.filter_message),
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -73,9 +88,9 @@ class MainFragment : Fragment() {
 
         when(item.itemId){
 
-            R.id.show_week -> {}
-            R.id.show_today -> {}
-            R.id.show_saved -> {}
+            R.id.show_week -> viewModel.filterAsteroids(AppUtils.getTodaysDate(), AppUtils.getWeeksEnd())
+            R.id.show_today -> viewModel.filterAsteroids(AppUtils.getTodaysDate(), AppUtils.getTodaysDate())
+            R.id.show_saved -> viewModel.resetList()
 
         }
 

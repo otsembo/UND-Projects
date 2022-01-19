@@ -47,7 +47,7 @@ To install the application you will need to do the following:
 * Launch Android Studio
 * Open the project folder from android studio
 
-        File > Open Project > Select ShoeStore
+        File > Open Project > Select Asteroid Radar
 
 * Get an api key from [NASA API](https://api.nasa.gov/)
 * Wait for the project to build and index.

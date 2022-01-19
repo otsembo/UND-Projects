@@ -13,15 +13,10 @@ interface NasaApi {
         startDate:String,
 
         @Query("end_date")
-        endDate:String,
-
-        @Query("api_key")
-        apiKey:String) : String
+        endDate:String) : String
 
     @GET("planetary/apod")
-    suspend fun fetchImageOfDay(
-        @Query("api_key")
-        apiKey: String) : ImageOfDay
+    suspend fun fetchImageOfDay() : ImageOfDay
 
 }
 

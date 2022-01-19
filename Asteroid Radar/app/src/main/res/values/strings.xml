@@ -29,4 +29,6 @@
     <string name="asteroid_image_detail">Image of an asteroid</string>
     <string name="asteroid_au">Click to learn about astronomical unit</string>
 
+    <string name="filter_message">Your filter has been applied</string>
+
 </resources>

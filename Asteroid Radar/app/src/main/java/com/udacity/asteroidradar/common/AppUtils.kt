@@ -22,4 +22,12 @@ object AppUtils {
         return SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT).format(dateInWeek)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun getYesterdaysDate() : String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -1)
+        val dateInWeek = calendar.time
+        return SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT).format(dateInWeek)
+    }
+
 }

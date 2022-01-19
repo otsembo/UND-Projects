@@ -16,13 +16,16 @@ interface AsteroidDao {
     @Insert(onConflict = REPLACE)
     suspend fun addAllAsteroids(vararg asteroid: Asteroid)
 
-    @Query("DELETE FROM asteroids")
-    suspend fun deleteAll()
+    @Query("DELETE FROM asteroids WHERE approach_date = :yesterday")
+    suspend fun deletePreviousDayData(yesterday:String)
 
     @Query("SELECT * FROM asteroids WHERE id = :id LIMIT 1")
     suspend fun getAsteroid(id:Long) : Asteroid
 
     @Query("SELECT * FROM asteroids WHERE approach_date = :approachDate")
     fun getTodayAsteroids(approachDate:String) : LiveData<List<Asteroid>>
+
+    @Query("SELECT * FROM asteroids WHERE approach_date >= :startDate AND approach_date <= :endDate ORDER BY approach_date ASC")
+    suspend fun getFilteredAsteroids(startDate:String, endDate:String) : List<Asteroid>
 
 }
